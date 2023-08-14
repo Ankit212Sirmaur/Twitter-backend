@@ -13,6 +13,8 @@ app.listen(3000, async () =>{
     //     content: 'second tweet',
     // })
     const tweet = await Tweet.findById('64da3758a8a7f2c8d3cc6129');
+    tweet.userEmail = 'b@c.com';
+    await tweet.save();
     const tweet2 = await Tweet.find({userEmail: 'a@b.com '});
     console.log(tweet);
 });
