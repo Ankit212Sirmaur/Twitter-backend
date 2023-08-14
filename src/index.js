@@ -5,6 +5,7 @@ const app = express();
 
 const Tweet = require('./models/tweet');
 const TweetRepository = require('./repository/tweet-respository')
+const Comment = require('./models/comment');
 
 app.listen(3000, async () =>{
     console.log('server started');
@@ -19,8 +20,14 @@ app.listen(3000, async () =>{
     // const tweet2 = await Tweet.find({userEmail: 'a@b.com '});
     const tweetRepo = new TweetRepository();
     // const tweet = await tweetRepo.update('64da3569ce3bf5b8d4059250',{content: 'i am updating again'})
-    const tweet = await tweetRepo.create({content: 'my tweet'});
-    tweet.comments.push({content : 'first comment'});
+    // const tweet = await tweetRepo.create({content: 'my tweet'});
+    // tweet.comments.push({content : 'first comment'});
+    // await tweet.save();
+    // console.log(tweet);
+    const tweet = await tweetRepo.create({content: 'comment on separate schema'});
+    console.log(tweet);
+    const commnet = await Comment.create({content: 'new commnet on schema'})
+    tweet.comments.push(commnet);
     await tweet.save();
     console.log(tweet);
 });
