@@ -9,18 +9,16 @@ const tweetSchema = new mongoose.Schema({
         type: String,
     },
     comments: [
-        // {
-        //     content: {
-        //         type: String,
-        //         required: true,
-        //     }
-        // }
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Comment'
         }
     ]
 }, {timestamps: true});
+
+tweetSchema.virtual('contentWithEmail').get(function process() {
+    return `${this.content} \n ${this.userEmail}`;
+})
 
 const tweet = mongoose.model('tweet', tweetSchema);
 
