@@ -24,10 +24,14 @@ app.listen(3000, async () =>{
     // tweet.comments.push({content : 'first comment'});
     // await tweet.save();
     // console.log(tweet);
-    const tweet = await tweetRepo.create({content: 'comment on separate schema'});
-    console.log(tweet);
-    const commnet = await Comment.create({content: 'new commnet on schema'})
-    tweet.comments.push(commnet);
-    await tweet.save();
+    // const tweet = await tweetRepo.create({content: 'comment on separate schema'});
+    // console.log(tweet);
+    // const commnet = await Comment.create({content: 'new commnet on schema'})
+    // tweet.comments.push(commnet);
+    // await tweet.save();
+    // console.log(tweet);
+    // const tweet = await tweetRepo.get('64da6c58808acc3a477eda83');
+    // ✅✅ not populating comment just giving the  reference id 
+    const tweet = await tweetRepo.getAll(2,4);
     console.log(tweet);
 });

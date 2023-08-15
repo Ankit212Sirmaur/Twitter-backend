@@ -11,7 +11,15 @@ class TweetRepository {
     }
     async get(id){
         try {
-            const tweet = await Tweet.findById(data);
+            const tweet = await Tweet.findById(id);
+            return tweet;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async getWithComments(id){
+        try {
+            const tweet = await Tweet.findById(id).populate({path: 'comments'}).lean();  // convert the moongose object to js object
             return tweet;
         } catch (error) {
             console.log(error);
@@ -25,9 +33,17 @@ class TweetRepository {
             console.log(error);
         }
     }
-    async destroy(){
+    async destroy(id){
         try {
-            const tweet = await Tweet.findById(data);
+            const tweet = await Tweet.findById(id);
+            return tweet;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async getAll(offset, limit){
+        try {
+            const tweet = await Tweet.find().skip(offset).limit(limit);
             return tweet;
         } catch (error) {
             console.log(error);
