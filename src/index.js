@@ -33,6 +33,8 @@ app.listen(3000, async () =>{
     // const tweet = await tweetRepo.get('64da6c58808acc3a477eda83');
     // ✅✅ not populating comment just giving the  reference id 
     // console.log(tweet);
-    const tweet = await tweetRepo.getAll(0,4);
-    console.log(tweet[1].contentWithEmail);
+    // const tweet = await tweetRepo.getAll(0,4);
+    // console.log(tweet[1].contentWithEmail);
+    const tweet = await tweetRepo.create({content: 'content with hooks'});
+    console.log(tweet);
 });
