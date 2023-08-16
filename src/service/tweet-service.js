@@ -1,8 +1,9 @@
-const TweetRepository = require('../repository');
+const {HashtagRepository,TweetRepository} = require('../repository');
 
 class TweetService {
     constructor(){
         this.tweetRepository = new TweetRepository();
+        this.HashtagRepository = new HashtagRepository();
     }
     async create(data){
         const content = data.content;
@@ -11,7 +12,14 @@ class TweetService {
             tag.subString(1);
         });
         const tweet = await this.tweetRepository.create(data);
+        const alreadyPresentTags = await this.HashtagRepository.findByName(tags).map(tag => tag.title);
+        let newTags = tags.filter(tag => !alreadyPresentTags.includes(tag));
+        newTags = newTags.map(tag =>{
+            return {title: tag, tweets: [tweet.id]}
+        });
+        const response = await this.HashtagRepository.bulkCreate(newTags);
         return tweet;
+
     }
 }
 
