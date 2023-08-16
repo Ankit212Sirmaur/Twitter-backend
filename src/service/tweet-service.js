@@ -10,7 +10,6 @@ class TweetService {
         tags = tags.map((tag) =>{
             tag.subString(1);
         });
-        console.log(tags);
         const tweet = await this.tweetRepository.create(data);
         return tweet;
     }
