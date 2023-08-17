@@ -10,7 +10,7 @@ app.listen(3000, async () =>{
     console.log('mongodb connected');
     const Service = new TweetService();
         const tweet = await Service.create({
-            content : 'Done with #refactor'
+            content : 'capital #CODE'
         });
         console.log(tweet);
         
