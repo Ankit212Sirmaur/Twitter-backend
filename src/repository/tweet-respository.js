@@ -25,6 +25,8 @@ class TweetRepository {
             console.log(error);
         }
     }
+    // mysql ==> ORM
+    // MONGODB ==> ODM
     async update(tweetId, data){
         try {
             const tweet = await Tweet.findByIdAndUpdate(tweetId,data, {new:true});
@@ -35,7 +37,7 @@ class TweetRepository {
     }
     async destroy(id){
         try {
-            const tweet = await Tweet.findById(id);
+            const tweet = await Tweet.deleteOne(id);
             return tweet;
         } catch (error) {
             console.log(error);

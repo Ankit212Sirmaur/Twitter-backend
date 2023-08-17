@@ -11,10 +11,10 @@ class HashtagRepository {
     }
     async bulkCreate(data){
         try {
-            const tag = await hashtag.insertMany( data);
+            const tag = await hashtag.insertMany(data);
             return tag;
         } catch (error) {
-            console.log(error);
+            console.log(error); 
         }
     }
     async get(id){
@@ -28,17 +28,17 @@ class HashtagRepository {
     async destroy(id){
         try {
             const tag = await hashtag.findById(id);
-            return tweet;
+            return tag;
         } catch (error) {
             console.log(error);
         }
     }
     async findByName(titleList){
         try {
-            const tags = await hashtag.find({
+            const tag = await hashtag.find({
                 title: titleList
-            }).select('title -_id'); 
-            return tags;
+            });
+            return tag;
         } catch (error) {
             console.log(error);
         }

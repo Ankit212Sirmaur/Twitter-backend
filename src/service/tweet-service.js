@@ -7,20 +7,23 @@ class TweetService {
     }
     async create(data){
         const content = data.content;
-        const tags = content.match(/#[a-zA-Z0-9]+/g); // this regex extracts hashtags
-        tags = tags.map((tag) =>{
-            tag.subString(1);
-        });
+        const tags = content.match(/#[a-zA-Z0-9_]+/g).map((tag) => tag.substring(1).toLowerCase()); // this regex extracts hashtags
         const tweet = await this.tweetRepository.create(data);
-        const alreadyPresentTags = await this.HashtagRepository.findByName(tags).map(tag => tag.title);
-        let newTags = tags.filter(tag => !alreadyPresentTags.includes(tag));
+        let alreadyPresentTags = await this.HashtagRepository.findByName(tags);
+        let titleofPresentTags = alreadyPresentTags.map(tag => tag.title);
+        let newTags = tags.filter(tag => !titleofPresentTags.includes(tag));
         newTags = newTags.map(tag =>{
             return {title: tag, tweets: [tweet.id]}
         });
-        const response = await this.HashtagRepository.bulkCreate(newTags);
+        await this.HashtagRepository.bulkCreate(newTags);
+        alreadyPresentTags.forEach((tag) =>{
+            tag.tweets.push(tweet.id);
+            tag.save();
+        })
         return tweet;
-
     }
 }
 
-module.exports = TweetService;
+// hello i am #ready to go any where in the #country
+
+module.exports = TweetService;  
