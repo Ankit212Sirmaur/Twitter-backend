@@ -1,6 +1,6 @@
-const Tweet = require('../models/tweet');
+import Tweet from '../models/tweet.js'
 
-class TweetRepository {
+export class TweetRepository {
     async create(data){
         try {
             const tweet = await Tweet.create(data);
@@ -25,8 +25,6 @@ class TweetRepository {
             console.log(error);
         }
     }
-    // mysql ==> ORM
-    // MONGODB ==> ODM
     async update(tweetId, data){
         try {
             const tweet = await Tweet.findByIdAndUpdate(tweetId,data, {new:true});
@@ -52,5 +50,3 @@ class TweetRepository {
         }
     }
 }
-
-module.exports = TweetRepository;
