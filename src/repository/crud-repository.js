@@ -1,7 +1,8 @@
-class CrudRepository{
+export class CrudRepository{
     constructor(model){
         this.model = model;
     }
+
     async create (data){
         try {
             const result = await this.model.create(data);
@@ -11,6 +12,7 @@ class CrudRepository{
             throw error;
         }
     }
+
     async destroy(id){
         try {
             const result = await this.model.findByIdAndDelete(id);
@@ -20,6 +22,7 @@ class CrudRepository{
             throw error;
         }
     }
+
     async get(id){
         try {
             const result = await this.model.findById(id);
@@ -29,6 +32,7 @@ class CrudRepository{
             throw error;
         }
     }
+
     async getAll(){
         try {
             const result = await this.model.find({});
@@ -38,7 +42,8 @@ class CrudRepository{
             throw error;       
         }
     }
-    async updata(id, data){
+     
+    async update(id, data){
         try {
             const result = await this.model.findByIdAndUpdate(id, data, {new: true});
             return result;
