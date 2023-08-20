@@ -6,8 +6,9 @@ export default class LikeService{
         this.TweetRepository = new TweetRepository();
     }
     async toogleLike(modelId, modelType, userId){
-         if(modelType == 'Tweet'){
+         if(modelType ===  'Tweet'){
             var likeable = await this.TweetRepository.find(modelId);
+            console.log(likeable);
          }else if( modelType == 'Comment'){
             // TODO 
          }else{
@@ -18,6 +19,7 @@ export default class LikeService{
             onModel: modelType,
             likeable: modelId,
          });
+
          if(exits){
             likeable.likes.pull(exits.id);
             await likeable.save();
