@@ -15,7 +15,8 @@ const likeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
-    }
+    },
+    
 }, {timestamps: true});
 
 const Like = mongoose.model('Like', likeSchema);
