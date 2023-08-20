@@ -19,7 +19,13 @@ const commentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         refPath: 'onModel',
-    }
+    },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'comment',
+        }
+    ]
 }, {timestamps: true});
 
 const Comment = mongoose.model('comment', commentSchema);
