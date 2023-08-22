@@ -12,11 +12,11 @@ export const createTweet = async (req, res) =>{
             error: {},
         })
     } catch (error) {
-        return res.status(201).json({
-            successs: true,
+        return res.status(500).json({
+            successs: false,
             message: 'Something went wrong',
-            data: response,
-            error: {},
+            data: {},
+            error: error
         })
     }
 }
@@ -31,7 +31,7 @@ export const getTweet = async (req, res) =>{
             error: {},
         })
     } catch (error) {
-        return res.status(201).json({
+        return res.status(401).json({
             successs: true,
             message: 'Something went wrong while fetching tweet',
             data: response,
