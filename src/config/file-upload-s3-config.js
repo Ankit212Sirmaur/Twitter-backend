@@ -6,14 +6,12 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 aws.config.update({
-    region: 'ap-south-1',
-    secretAccessKey: 'CSjMZLSeJqWfg+y+qkbODyBtGE2n4WKv5hlelPys',
-    accessKeyId: 'AKIA5XMQDBXSEZPE6ZSN',
+    region: process.env.AWS_REGION,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.envACCESS_KEY_ID
 });
 
 const s3 = new aws.S3();
-console.log('BUCKET_NAME:', process.env.BUCKET_NAME);
-console.log('ID:', process.env.ACCESS_KEY_ID);
 
 const upload = multer({
     storage: multerS3({
