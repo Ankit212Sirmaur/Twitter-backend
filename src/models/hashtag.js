@@ -1,4 +1,4 @@
-import mongoose  from "mongoose";
+import mongoose from "mongoose";
 
 const hashtagSchema = new mongoose.Schema({
     title: {
@@ -12,7 +12,7 @@ const hashtagSchema = new mongoose.Schema({
             ref: 'Tweet'
         }
     ]
-}, {timestamps: true});
+}, { timestamps: true });
 
 const Hashtag = mongoose.model('Hashtag', hashtagSchema);
 

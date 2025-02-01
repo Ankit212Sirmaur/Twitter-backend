@@ -8,7 +8,6 @@ export default class LikeService{
     async toogleLike(modelId, modelType, userId){
          if(modelType ===  'Tweet'){
             var likeable = await this.TweetRepository.find(modelId);
-            console.log(likeable);
          }else if( modelType == 'Comment'){
             // TODO 
          }else{
